@@ -87,16 +87,30 @@ namespace cryptonote {
   }
   //-----------------------------------------------------------------------------------------------
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
+
+//allocate coins to be issued as Blockrazor bounties
+     if (already_generated_coins <= 10) {
+      reward = 1;
+      return true;
+     }
+
+     if (already_generated_coins > 10 && < 3600000000000000) {
+      reward = 3600000000000000 / 50;
+      return true;
+     }
+     //krazorfix add a sanity assert to make sure that total Blockrazor bounty coins < 20% of total coins.
+
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");
     const int target = version < 2 ? DIFFICULTY_TARGET_V1 : DIFFICULTY_TARGET_V2;
     const int target_minutes = target / 60;
     const int emission_speed_factor = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1);
 
     uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> emission_speed_factor;
-    if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)
-    {
-      base_reward = FINAL_SUBSIDY_PER_MINUTE*target_minutes;
-    }
+//Remove tailings. The community can always add tailings in later if it solves a problem.
+    // if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)
+    // {
+    //   base_reward = FINAL_SUBSIDY_PER_MINUTE*target_minutes;
+    // }
 
     uint64_t full_reward_zone = get_min_block_size(version);
 
@@ -237,7 +251,7 @@ namespace cryptonote {
         info.has_payment_id = false;
       }
       else {
-        LOG_PRINT_L1("Wrong address prefix: " << prefix << ", expected " << address_prefix 
+        LOG_PRINT_L1("Wrong address prefix: " << prefix << ", expected " << address_prefix
           << " or " << integrated_address_prefix
           << " or " << subaddress_prefix);
         return false;

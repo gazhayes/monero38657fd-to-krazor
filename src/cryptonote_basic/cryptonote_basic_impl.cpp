@@ -100,7 +100,7 @@ namespace cryptonote {
      }
 
 //essentially no block reward until kickoff date to make mining fair
-     if (already_generated_coins >= 3600000000000010 && already_generated_coins > (3600000000000010 + (KICKOFF_HEIGHT - 60)) {
+     if (already_generated_coins >= 3600000000000010 && already_generated_coins > (3600000000000010 + KICKOFF_HEIGHT - 60)) {
       reward = 1;
       return true;
      }

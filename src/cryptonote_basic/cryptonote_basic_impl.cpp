@@ -94,7 +94,7 @@ namespace cryptonote {
       return true;
      }
 
-     if (already_generated_coins > 10 && < 3600000000000000) {
+     if (already_generated_coins > 10 && already_generated_coins < 3600000000000000) {
       reward = 3600000000000000 / 50;
       return true;
      }

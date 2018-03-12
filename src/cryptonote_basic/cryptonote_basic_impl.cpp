@@ -88,16 +88,23 @@ namespace cryptonote {
   //-----------------------------------------------------------------------------------------------
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
 
-//allocate coins to be issued as Blockrazor bounties
-     if (already_generated_coins <= 10) {
+//no reward for first 10 blocks
+     if (already_generated_coins < 10) {
+      reward = 1;
+      return true;
+     }
+//allocate coins to be issued as Blockrazor bounties and developer bounties, view key should be provided for addresses used here so community can audit them
+     if (already_generated_coins >= 10 && already_generated_coins < 3600000000000000) {
+      reward = 3600000000000000 / 50;
+      return true;
+     }
+
+//essentially no block reward until kickoff date to make mining fair
+     if (already_generated_coins >= 3600000000000010 && already_generated_coins > (3600000000000010 + (KICKOFF_HEIGHT - 60)) {
       reward = 1;
       return true;
      }
 
-     if (already_generated_coins > 10 && already_generated_coins < 3600000000000000) {
-      reward = 3600000000000000 / 50;
-      return true;
-     }
      //krazorfix add a sanity assert to make sure that total Blockrazor bounty coins < 20% of total coins.
 
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");

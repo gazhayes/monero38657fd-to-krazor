@@ -1366,7 +1366,7 @@ namespace nodetool
     else
       node_data.my_port = 0;
     node_data.network_id = m_network_id;
-    std::cout << std::ENDL << std::ENDL << node_data.network_id << std::ENDL;
+    MWARNING(node_data.network_id);
     return true;
   }
   //-----------------------------------------------------------------------------------

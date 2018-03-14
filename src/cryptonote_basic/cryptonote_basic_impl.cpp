@@ -100,10 +100,10 @@ namespace cryptonote {
      }
 
 //essentially no block reward until kickoff date to make mining fair
-     if (already_generated_coins >= 2121531118126151810 && already_generated_coins < (2121531118126151800 + KICKOFF_HEIGHT)) {
-      reward = 1;
-      return true;
-     }
+     // if (already_generated_coins >= 2121531118126151810 && already_generated_coins < (2121531118126151800 + KICKOFF_HEIGHT)) {
+     //  reward = 1;
+     //  return true;
+     // }
 
      //krazorfix add a sanity assert to make sure that total Blockrazor bounty coins < 20% of total coins.
 

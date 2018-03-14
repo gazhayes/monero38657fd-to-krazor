@@ -94,13 +94,13 @@ namespace cryptonote {
       return true;
      }
 //allocate coins to be issued as Blockrazor bounties and developer bounties, view key should be provided for addresses used here so community can audit them
-     if (already_generated_coins > 10 && already_generated_coins < 3600000000000000) {
-      reward = 3600000000000000 / 10;
+     if (already_generated_coins > 10 && already_generated_coins < 2121531118126151800) {
+      reward = 2121531118126151800 / 10;
       return true;
      }
 
 //essentially no block reward until kickoff date to make mining fair
-     if (already_generated_coins >= 3600000000000010 && already_generated_coins < (3600000000000010 + KICKOFF_HEIGHT - 60)) {
+     if (already_generated_coins >= 2121531118126151810 && already_generated_coins < (2121531118126151800 + KICKOFF_HEIGHT)) {
       reward = 1;
       return true;
      }

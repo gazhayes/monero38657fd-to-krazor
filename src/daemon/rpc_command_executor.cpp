@@ -1598,7 +1598,7 @@ bool t_rpc_command_executor::print_coinbase_tx_sum(uint64_t height, uint64_t cou
   if(height < 21){
     tools::msg_writer() << "This summary includes the following: " << ENDL
     << "Blockrazor bounty allocation: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << " KZR ()" << ENDL
-    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" << "()" ENDL
+    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" << "()" << ENDL
     << "The maximum amount of Krazor that will ever be produced is: " << cryptonote::print_money(MONEY_SUPPLY) << " KZR" << ENDL
   };
 

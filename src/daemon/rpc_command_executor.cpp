@@ -1595,6 +1595,13 @@ bool t_rpc_command_executor::print_coinbase_tx_sum(uint64_t height, uint64_t cou
   cryptonote::COMMAND_RPC_GET_COINBASE_TX_SUM::response res;
   epee::json_rpc::error error_resp;
 
+  if(height < 21){
+    tools::msg_writer() << "This summary includes the following: " << ENDL
+    << "Blockrazor bounty allocation: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << " KZR ()" << ENDL
+    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" << "()" ENDL
+    << "The maximum amount of Krazor that will ever be produced is: " << cryptonote::print_money(MONEY_SUPPLY) << " KZR" << ENDL
+  };
+
   req.height = height;
   req.count = count;
 
@@ -1617,7 +1624,7 @@ bool t_rpc_command_executor::print_coinbase_tx_sum(uint64_t height, uint64_t cou
   }
 
   tools::msg_writer() << "Sum of coinbase transactions between block heights ["
-    << height << ", " << (height + count) << ") is "
+    << height << ", " << (height + count) << "] is "
     << cryptonote::print_money(res.emission_amount + res.fee_amount) << " "
     << "consisting of " << cryptonote::print_money(res.emission_amount)
     << " in emissions, and " << cryptonote::print_money(res.fee_amount) << " in fees";

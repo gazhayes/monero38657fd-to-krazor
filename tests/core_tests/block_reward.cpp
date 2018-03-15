@@ -1,21 +1,21 @@
 // Copyright (c) 2014-2018, The Monero Project
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without modification, are
 // permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice, this list of
 //    conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright notice, this list
 //    of conditions and the following disclaimer in the documentation and/or other
 //    materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its contributors may be
 //    used to endorse or promote products derived from this software without specific
 //    prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 // MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -25,11 +25,12 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 // Parts of this file are originally copyright (c) 2012-2013 The Cryptonote developers
 
 #include "chaingen.h"
 #include "block_reward.h"
+#include "../../src/cryptonote_config.h"
 
 using namespace epee;
 using namespace cryptonote;
@@ -247,11 +248,11 @@ bool gen_block_reward::check_block_rewards(cryptonote::core& /*c*/, size_t /*ev_
   DEFINE_TESTS_ERROR_CONTEXT("gen_block_reward_without_txs::check_block_rewards");
 
   std::array<uint64_t, 7> blk_rewards;
-  blk_rewards[0] = MONEY_SUPPLY >> EMISSION_SPEED_FACTOR_PER_MINUTE;
+  blk_rewards[0] = MONEY_SUPPLY >> config::EMISSION_COEFFICIENT;
   uint64_t cumulative_reward = blk_rewards[0];
   for (size_t i = 1; i < blk_rewards.size(); ++i)
   {
-    blk_rewards[i] = (MONEY_SUPPLY - cumulative_reward) >> EMISSION_SPEED_FACTOR_PER_MINUTE;
+    blk_rewards[i] = (MONEY_SUPPLY - cumulative_reward) >> config::EMISSION_COEFFICIENT;
     cumulative_reward += blk_rewards[i];
   }
 

@@ -1707,8 +1707,7 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     }
   }
 
-  tools::msg_writer() << ENDL << ENDL
-  << "|----------> KRAZOR BLOCKCHAIN STATISTICS <--------|" << ENDL
+  tools::msg_writer() ENDL << "|----------> KRAZOR BLOCKCHAIN STATISTICS <--------|" << ENDL
   << "Current height: " << ires.height << ENDL
   << "Current difficulty: " << ires.difficulty << ENDL
   << "Cumulative difficulty: " << ires.cumulative_difficulty << ENDL

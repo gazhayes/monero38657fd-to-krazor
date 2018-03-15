@@ -89,19 +89,19 @@ namespace cryptonote {
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
 
 //no reward for first 10 blocks
-     if (already_generated_coins < 8) {
+     if (already_generated_coins < 6) {
       reward = 1;
       return true;
      }
 
-     if (already_generated_coins == 9) {
+     if (already_generated_coins == 6) {
       reward = 111812615180198400; //developers' reward
       return true;
      }
 
 
 //allocate coins to be issued as Blockrazor bounties and developer bounties, view key should be provided for addresses used here so community can audit them
-     if (already_generated_coins > 9 && already_generated_coins < 2233343733306350209) {
+     if (already_generated_coins > 111812615180198400 && already_generated_coins < 2233343733306350209) {
       reward = 2121531118126151800 / 10; //10 Blockrazor bounty wallets
       return true;
      }

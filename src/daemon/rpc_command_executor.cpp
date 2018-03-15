@@ -1739,7 +1739,7 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
 
     double avgdiff = 0;
     double avgnumtxes = 0;
-    double rawavgreward = 0;
+    double rawAvgReward = 0;
     double avgMinedReward = 0;
     std::vector<uint64_t> sizes;
     sizes.reserve(nblocks);
@@ -1749,7 +1749,7 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     {
       avgdiff += bhr.difficulty;
       avgnumtxes += bhr.num_txes;
-      avgreward += bhr.reward;
+      rawAvgReward += bhr.reward;
       sizes.push_back(bhr.block_size);
       static_assert(sizeof(bhr.major_version) == 1, "major_version expected to be uint8_t");
       static_assert(sizeof(bhr.minor_version) == 1, "major_version expected to be uint8_t");
@@ -1760,9 +1760,9 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     }
     avgdiff /= nblocks;
     avgnumtxes /= nblocks;
-    avgMinedReward = avgreward - 2121531118126151800;
+    avgMinedReward = rawAvgReward - 2121531118126151800;
     avgMinedReward /= nblocks;
-    avgreward /= nblocks;
+    rawAvgReward /= nblocks;
 
     uint64_t median_block_size = epee::misc_utils::median(sizes);
 

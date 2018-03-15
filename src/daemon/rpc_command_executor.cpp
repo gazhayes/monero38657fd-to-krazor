@@ -1,21 +1,21 @@
 // Copyright (c) 2014-2018, The Monero Project
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without modification, are
 // permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice, this list of
 //    conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright notice, this list
 //    of conditions and the following disclaimer in the documentation and/or other
 //    materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its contributors may be
 //    used to endorse or promote products derived from this software without specific
 //    prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 // MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -485,13 +485,13 @@ bool t_rpc_command_executor::print_connections() {
 
   tools::msg_writer() << std::setw(30) << std::left << "Remote Host"
       << std::setw(20) << "Peer id"
-      << std::setw(20) << "Support Flags"      
+      << std::setw(20) << "Support Flags"
       << std::setw(30) << "Recv/Sent (inactive,sec)"
       << std::setw(25) << "State"
       << std::setw(20) << "Livetime(sec)"
       << std::setw(12) << "Down (kB/s)"
       << std::setw(14) << "Down(now)"
-      << std::setw(10) << "Up (kB/s)" 
+      << std::setw(10) << "Up (kB/s)"
       << std::setw(13) << "Up(now)"
       << std::endl;
 
@@ -500,7 +500,7 @@ bool t_rpc_command_executor::print_connections() {
     std::string address = info.incoming ? "INC " : "OUT ";
     address += info.ip + ":" + info.port;
     //std::string in_out = info.incoming ? "INC " : "OUT ";
-    tools::msg_writer() 
+    tools::msg_writer()
      //<< std::setw(30) << std::left << in_out
      << std::setw(30) << std::left << address
      << std::setw(20) << epee::string_tools::pad_string(info.peer_id, 16, '0', true)
@@ -512,11 +512,11 @@ bool t_rpc_command_executor::print_connections() {
      << std::setw(14) << info.current_download
      << std::setw(10) << info.avg_upload
      << std::setw(13) << info.current_upload
-     
+
      << std::left << (info.localhost ? "[LOCALHOST]" : "")
      << std::left << (info.local_ip ? "[LAN]" : "");
     //tools::msg_writer() << boost::format("%-25s peer_id: %-25s %s") % address % info.peer_id % in_out;
-    
+
   }
 
   return true;
@@ -1043,7 +1043,7 @@ bool t_rpc_command_executor::start_mining(cryptonote::account_public_address add
   req.threads_count = num_threads;
   req.do_background_mining = do_background_mining;
   req.ignore_battery = ignore_battery;
-  
+
   std::string fail_message = "Mining did not start";
 
   if (m_is_rpc)
@@ -1270,11 +1270,11 @@ bool t_rpc_command_executor::out_peers(uint64_t limit)
 {
 	cryptonote::COMMAND_RPC_OUT_PEERS::request req;
 	cryptonote::COMMAND_RPC_OUT_PEERS::response res;
-	
+
 	epee::json_rpc::error error_resp;
 
 	req.out_peers = limit;
-	
+
 	std::string fail_message = "Unsuccessful";
 
 	if (m_is_rpc)
@@ -1335,7 +1335,7 @@ bool t_rpc_command_executor::start_save_graph()
 	cryptonote::COMMAND_RPC_START_SAVE_GRAPH::request req;
 	cryptonote::COMMAND_RPC_START_SAVE_GRAPH::response res;
 	std::string fail_message = "Unsuccessful";
-	
+
 	if (m_is_rpc)
 	{
 		if (!m_rpc_client->rpc_request(req, res, "/start_save_graph", fail_message.c_str()))
@@ -1343,7 +1343,7 @@ bool t_rpc_command_executor::start_save_graph()
 			return true;
 		}
 	}
-	
+
 	else
     {
 		if (!m_rpc_server->on_start_save_graph(req, res) || res.status != CORE_RPC_STATUS_OK)
@@ -1352,7 +1352,7 @@ bool t_rpc_command_executor::start_save_graph()
 			return true;
 		}
 	}
-	
+
 	tools::success_msg_writer() << "Saving graph is now on";
 	return true;
 }
@@ -1362,7 +1362,7 @@ bool t_rpc_command_executor::stop_save_graph()
 	cryptonote::COMMAND_RPC_STOP_SAVE_GRAPH::request req;
 	cryptonote::COMMAND_RPC_STOP_SAVE_GRAPH::response res;
 	std::string fail_message = "Unsuccessful";
-	
+
 	if (m_is_rpc)
 	{
 		if (!m_rpc_client->rpc_request(req, res, "/stop_save_graph", fail_message.c_str()))
@@ -1370,7 +1370,7 @@ bool t_rpc_command_executor::stop_save_graph()
 			return true;
 		}
 	}
-	
+
 	else
     {
 		if (!m_rpc_server->on_stop_save_graph(req, res) || res.status != CORE_RPC_STATUS_OK)
@@ -1619,7 +1619,7 @@ bool t_rpc_command_executor::print_coinbase_tx_sum(uint64_t height, uint64_t cou
   tools::msg_writer() << "Sum of coinbase transactions between block heights ["
     << height << ", " << (height + count) << ") is "
     << cryptonote::print_money(res.emission_amount + res.fee_amount) << " "
-    << "consisting of " << cryptonote::print_money(res.emission_amount) 
+    << "consisting of " << cryptonote::print_money(res.emission_amount)
     << " in emissions, and " << cryptonote::print_money(res.fee_amount) << " in fees";
   return true;
 }
@@ -1707,8 +1707,12 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     }
   }
 
-  tools::msg_writer() << "Height: " << ires.height << ", diff " << ires.difficulty << ", cum. diff " << ires.cumulative_difficulty
-      << ", target " << ires.target << " sec" << ", dyn fee " << cryptonote::print_money(feres.fee) << "/kB";
+  tools::msg_writer() << "|----------> KRAZOR BLOCKCHAIN STATISTICS <--------|" << ENDL
+  << "Current height: " << ires.height << ENDL
+  << "Current difficulty: " << ires.difficulty << ENDL
+  << "Cumulative difficulty: " << ires.cumulative_difficulty << ENDL
+  << "Target block time: " << ires.target << " seconds" << ENDL
+  << "Current dynamic fee: " << cryptonote::print_money(feres.fee) << "/kB";
 
   if (nblocks > 0)
   {
@@ -1735,7 +1739,8 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
 
     double avgdiff = 0;
     double avgnumtxes = 0;
-    double avgreward = 0;
+    double rawavgreward = 0;
+    double avgMinedReward = 0;
     std::vector<uint64_t> sizes;
     sizes.reserve(nblocks);
     uint64_t earliest = std::numeric_limits<uint64_t>::max(), latest = 0;
@@ -1755,10 +1760,22 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     }
     avgdiff /= nblocks;
     avgnumtxes /= nblocks;
+    avgMinedReward = avgreward - 2121531118126151800;
+    avgMinedReward /= nblocks;
     avgreward /= nblocks;
+
     uint64_t median_block_size = epee::misc_utils::median(sizes);
-    tools::msg_writer() << "Last " << nblocks << ": avg. diff " << (uint64_t)avgdiff << ", " << (latest - earliest) / nblocks << " avg sec/block, avg num txes " << avgnumtxes
-        << ", avg. reward " << cryptonote::print_money(avgreward) << ", median block size " << median_block_size;
+
+    //Start printing statistics
+    tools::msg_writer() << "Last block: " << nblocks << ENDL
+    << "Average difficulty: " << (uint64_t)avgdiff << ENDL
+    << "Average block time: " << (latest - earliest) / nblocks << ENDL
+    << "Average number of transactions: " << avgnumtxes << ENDL
+    << "Average block reward (mined): " << cryptonote::print_money(avgMinedReward) << ENDL
+    << "Maximum coins: " << cryptonote::print_money(MONEY_SUPPLY) << " KZR" << ENDL
+    << "Maximum Blockrazor bounties: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << ENDL
+    << "Developer reward: " << cryptonote::print_money(212153111812615180) << ENDL
+    <<"Median block size: " << median_block_size;
 
     unsigned int max_major = 256, max_minor = 256;
     while (max_major > 0 && !major_versions[--max_major]);
@@ -1767,12 +1784,12 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     for (unsigned n = 0; n <= max_major; ++n)
       if (major_versions[n])
         s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(major_versions[n]) + std::string(" v") + boost::lexical_cast<std::string>(n);
-    tools::msg_writer() << "Block versions: " << s;
+    tools::msg_writer() << "Block versions: " << s << " blocks are ";
     s = "";
     for (unsigned n = 0; n <= max_minor; ++n)
       if (minor_versions[n])
-        s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(minor_versions[n]) + std::string(" v") + boost::lexical_cast<std::string>(n);
-    tools::msg_writer() << "Voting for: " << s;
+        s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(minor_versions[n]) + std::string("are v") + boost::lexical_cast<std::string>(n);
+    tools::msg_writer() << "Voting statistics: " << s;
   }
   return true;
 }

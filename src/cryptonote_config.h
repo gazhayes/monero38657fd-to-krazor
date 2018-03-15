@@ -169,7 +169,7 @@ namespace config
     } };
   std::string const GENESIS_TX = "023c01ff000101026b7630b2898acb792574c185ac51c60f72fc628146815d43d0ccd24cd17a75e4210142080b648ac9e38fbdc2bff98bee8a9e539827f102a03e29d49135f7ab7cb9c200";
   uint32_t const GENESIS_NONCE = 20161004;
-  uint16_t const EMISSION_COEFFICIENT = 5000000;
+  uint32_t const EMISSION_COEFFICIENT = 5000000;
 
   namespace testnet
   {

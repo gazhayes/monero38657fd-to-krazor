@@ -117,7 +117,7 @@ namespace cryptonote {
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");
 
 
-    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> config::EMISSION_COEFFICIENT;
+    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) / config::EMISSION_COEFFICIENT;
 //Remove tailings. The community can always add tailings in later if it solves a problem.
     // if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)
     // {

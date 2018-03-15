@@ -1707,7 +1707,8 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     }
   }
 
-  tools::msg_writer() << "|----------> KRAZOR BLOCKCHAIN STATISTICS <--------|" << ENDL
+  tools::msg_writer() << ENDL << ENDL
+  << "|----------> KRAZOR BLOCKCHAIN STATISTICS <--------|" << ENDL
   << "Current height: " << ires.height << ENDL
   << "Current difficulty: " << ires.difficulty << ENDL
   << "Cumulative difficulty: " << ires.cumulative_difficulty << ENDL
@@ -1773,9 +1774,9 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     << "Average number of transactions: " << avgnumtxes << ENDL
     << "Average block reward (mined): " << cryptonote::print_money(avgMinedReward) << ENDL
     << "Maximum coins: " << cryptonote::print_money(MONEY_SUPPLY) << " KZR" << ENDL
-    << "Maximum Blockrazor bounties: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << ENDL
-    << "Developer reward: " << cryptonote::print_money(212153111812615180) << ENDL
-    <<"Median block size: " << median_block_size;
+    << "Maximum KZR from Blockrazor bounties: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << " KZR" << ENDL
+    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" ENDL
+    << "Median block size: " << median_block_size;
 
     unsigned int max_major = 256, max_minor = 256;
     while (max_major > 0 && !major_versions[--max_major]);
@@ -1783,12 +1784,12 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     std::string s = "";
     for (unsigned n = 0; n <= max_major; ++n)
       if (major_versions[n])
-        s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(major_versions[n]) + std::string(" v") + boost::lexical_cast<std::string>(n);
-    tools::msg_writer() << "Block versions: " << s << " blocks are ";
+        s += (s.empty() ? " blocks are " : ", ") + boost::lexical_cast<std::string>(major_versions[n]) + std::string(" are v") + boost::lexical_cast<std::string>(n);
+    tools::msg_writer() << "Block versions: " << s;
     s = "";
     for (unsigned n = 0; n <= max_minor; ++n)
       if (minor_versions[n])
-        s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(minor_versions[n]) + std::string("are v") + boost::lexical_cast<std::string>(n);
+        s += (s.empty() ? "" : ", ") + boost::lexical_cast<std::string>(minor_versions[n]) + std::string("voting for v") + boost::lexical_cast<std::string>(n);
     tools::msg_writer() << "Voting statistics: " << s;
   }
   return true;

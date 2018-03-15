@@ -1775,7 +1775,7 @@ bool t_rpc_command_executor::print_blockchain_dynamic_stats(uint64_t nblocks)
     << "Average block reward (mined): " << cryptonote::print_money(avgMinedReward) << ENDL
     << "Maximum coins: " << cryptonote::print_money(MONEY_SUPPLY) << " KZR" << ENDL
     << "Maximum KZR from Blockrazor bounties: " << cryptonote::print_money(2121531118126151800 - 212153111812615180) << " KZR" << ENDL
-    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" ENDL
+    << "Developer reward: " << cryptonote::print_money(212153111812615180) << " KZR" << ENDL
     << "Median block size: " << median_block_size;
 
     unsigned int max_major = 256, max_minor = 256;

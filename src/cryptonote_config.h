@@ -51,8 +51,8 @@
 
 // MONEY_SUPPLY - total number coins to be generated
 #define MONEY_SUPPLY                                    11181261518019840112U
-#define EMISSION_SPEED_FACTOR_PER_MINUTE                (22)
-#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)300000000000) // 3 * pow(10, 11)
+
+#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)300000000000) // krazorfix
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2    60000 //size of block (bytes) after which reward for block calculated using block size
@@ -169,6 +169,7 @@ namespace config
     } };
   std::string const GENESIS_TX = "023c01ff000101026b7630b2898acb792574c185ac51c60f72fc628146815d43d0ccd24cd17a75e4210142080b648ac9e38fbdc2bff98bee8a9e539827f102a03e29d49135f7ab7cb9c200";
   uint32_t const GENESIS_NONCE = 20161004;
+  uint8_t const EMISSION_COEFFICIENT = 23;
 
   namespace testnet
   {

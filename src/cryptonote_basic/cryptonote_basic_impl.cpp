@@ -108,11 +108,9 @@ namespace cryptonote {
      //krazorfix add a sanity assert to make sure that total Blockrazor bounty coins < 20% of total coins.
 
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");
-    const int target = version < 2 ? DIFFICULTY_TARGET_V1 : DIFFICULTY_TARGET_V2;
-    const int target_minutes = target / 60;
-    const int emission_speed_factor = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1);
 
-    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> 23;
+
+    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> config::EMISSION_COEFFICIENT;
 //Remove tailings. The community can always add tailings in later if it solves a problem.
     // if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)
     // {

@@ -111,7 +111,6 @@ namespace cryptonote {
 
 // Create time-locked coinbase transactions to be distributed through Blockrazor bounties
      if (already_generated_coins >= 111812615180000000 && already_generated_coins < MONEY_SUPPLY * 0.4) {
-       std::cout << "CHECKPOINT" << ENDL;
       uint64_t expected_reward = (MONEY_SUPPLY * 0.4 - already_generated_coins) / 4.5;
       if (expected_reward < 103500000000000000) {
         reward = MONEY_SUPPLY * 0.4 - already_generated_coins;

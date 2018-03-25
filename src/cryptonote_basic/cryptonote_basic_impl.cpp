@@ -89,36 +89,36 @@ namespace cryptonote {
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
 
 //no reward for first 6 blocks
-     if (already_generated_coins < 6) {
+     if (already_generated_coins < 2) {
       reward = 1;
       return true;
      }
-
-     if (already_generated_coins == 6) {
-      reward = 111812615180000000 * 0.2; //initial developer bounties
-      return true;
-     }
-
-     if (already_generated_coins == 111812615180000000 * 0.2 + 6) {
-      reward = 111812615180000000 * 0.4; //12 months time-locked developer reward
-      return true;
-     }
-
-     if (already_generated_coins == 111812615180000000 * 0.6 + 6) {
-      reward = 111812615180000000 * 0.4; //24 months time-locked developer reward
-      return true;
-     }
-
-// Create time-locked coinbase transactions to be distributed through Blockrazor bounties
-     if (already_generated_coins >= 111812615180000000 && already_generated_coins < MONEY_SUPPLY * 0.4) {
-      uint64_t expected_reward = (MONEY_SUPPLY * 0.4 - already_generated_coins) / 4.5;
-      if (expected_reward < 103500000000000000) {
-        reward = MONEY_SUPPLY * 0.4 - already_generated_coins;
-        return true;
-      }
-      reward = expected_reward;
-      return true;
-     }
+//
+//      if (already_generated_coins == 6) {
+//       reward = 111812615180000000 * 0.2; //initial developer bounties
+//       return true;
+//      }
+//
+//      if (already_generated_coins == 111812615180000000 * 0.2 + 6) {
+//       reward = 111812615180000000 * 0.4; //12 months time-locked developer reward
+//       return true;
+//      }
+//
+//      if (already_generated_coins == 111812615180000000 * 0.6 + 6) {
+//       reward = 111812615180000000 * 0.4; //24 months time-locked developer reward
+//       return true;
+//      }
+//
+// // Create time-locked coinbase transactions to be distributed through Blockrazor bounties
+//      if (already_generated_coins >= 111812615180000000 && already_generated_coins < MONEY_SUPPLY * 0.4) {
+//       uint64_t expected_reward = (MONEY_SUPPLY * 0.4 - already_generated_coins) / 4.5;
+//       if (expected_reward < 103500000000000000) {
+//         reward = MONEY_SUPPLY * 0.4 - already_generated_coins;
+//         return true;
+//       }
+//       reward = expected_reward;
+//       return true;
+//      }
 
 //essentially no block reward until kickoff date to make mining fair
      // if (already_generated_coins >= 2121531118126151810 && already_generated_coins < (2121531118126151800 + KICKOFF_HEIGHT)) {

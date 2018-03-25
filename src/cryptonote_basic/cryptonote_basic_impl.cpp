@@ -116,9 +116,9 @@ namespace cryptonote {
       if (expected_reward < 103500000000000000) {
         reward = MONEY_SUPPLY * 0.4 - already_generated_coins;
         return true;
-      } else {
-        reward = expected_reward;
       }
+      reward = expected_reward;
+      return true;
      }
 
 //essentially no block reward until kickoff date to make mining fair

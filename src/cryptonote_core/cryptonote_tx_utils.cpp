@@ -165,17 +165,17 @@ namespace cryptonote
     //lock
     if(height > 2 && height < 16) {
       switch(height){
-        case 3: tx.unlock_time = 720 * 365 * 1;
-        case 4: tx.unlock_time = 720 * 365 * 2;
-        case 7: tx.unlock_time = 720 * 365 * 1;
-        case 8: tx.unlock_time = 720 * 365 * 2;
-        case 9: tx.unlock_time = 720 * 365 * 3;
-        case 10: tx.unlock_time = 720 * 365 * 4;
-        case 11: tx.unlock_time = 720 * 365 * 5;
-        case 12: tx.unlock_time = 720 * 365 * 6;
-        case 13: tx.unlock_time = 720 * 365 * 7;
-        case 14: tx.unlock_time = 720 * 365 * 8;
-        case 15: tx.unlock_time = 720 * 365 * 9;
+        case 3: tx.unlock_time = 720 * 365 * 1; break;//Developer rewards locked for 1 year
+        case 4: tx.unlock_time = 720 * 365 * 2; break;//Developer rewards locked for 2 years
+        case 7: tx.unlock_time = 720 * 365 * 1; break;//Blockrazor bounties locked for 1 year
+        case 8: tx.unlock_time = 720 * 365 * 2; break;//Blockrazor bounties locked for 2 years
+        case 9: tx.unlock_time = 720 * 365 * 3; break;//Blockrazor bounties locked for 3 years
+        case 10: tx.unlock_time = 720 * 365 * 4; break;//Blockrazor bounties locked for 4 years
+        case 11: tx.unlock_time = 720 * 365 * 5; break;//Blockrazor bounties locked for 5 years
+        case 12: tx.unlock_time = 720 * 365 * 6; break;//Blockrazor bounties locked for 6 years
+        case 13: tx.unlock_time = 720 * 365 * 7; break;//Blockrazor bounties locked for 7 years
+        case 14: tx.unlock_time = 720 * 365 * 8; break;//Blockrazor bounties locked for 8 years
+        case 15: tx.unlock_time = 720 * 365 * 9; break;//Blockrazor bounties locked for 9 years
         default: break;
       }
        //1 year from genesis

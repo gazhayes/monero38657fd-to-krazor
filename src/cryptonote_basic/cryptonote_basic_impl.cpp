@@ -94,23 +94,28 @@ namespace cryptonote {
       return true;
      }
 
-     if (already_generated_coins == 6) {
+     if (already_generated_coins == 2) {
       reward = 111812615180000000 * 0.2; //initial developer bounties
       return true;
      }
 
-     if (already_generated_coins == 111812615180000000 * 0.2 + 6) {
+     if (already_generated_coins == 111812615180000000 * 0.2 + 2) {
       reward = 111812615180000000 * 0.4; //12 months time-locked developer reward
       return true;
      }
 
-     if (already_generated_coins == 111812615180000000 * 0.6 + 6) {
+     if (already_generated_coins == 111812615180000000 * 0.6 + 2) {
       reward = 111812615180000000 * 0.4; //24 months time-locked developer reward
       return true;
      }
 
+     if (already_generated_coins == 111812615180000000 + 2) {
+      reward = 1; //1 block delay
+      return true;
+     }
+
 // Create time-locked coinbase transactions to be distributed through Blockrazor bounties
-     if (already_generated_coins >= 111812615180000000 && already_generated_coins < MONEY_SUPPLY * 0.4) {
+     if (already_generated_coins > 111812615180000000 && already_generated_coins < MONEY_SUPPLY * 0.4) {
       uint64_t expected_reward = (MONEY_SUPPLY * 0.4 - already_generated_coins) / 4.5;
       if (expected_reward < 103500000000000000) {
         reward = MONEY_SUPPLY * 0.4 - already_generated_coins;
@@ -121,12 +126,10 @@ namespace cryptonote {
      }
 
 //essentially no block reward until kickoff date to make mining fair
-     // if (already_generated_coins >= 2121531118126151810 && already_generated_coins < (2121531118126151800 + KICKOFF_HEIGHT)) {
-     //  reward = 1;
-     //  return true;
-     // }
-
-     //krazorfix add a sanity assert to make sure that total Blockrazor bounty coins < 20% of total coins.
+     if (already_generated_coins >= MONEY_SUPPLY * 0.4 && already_generated_coins < (MONEY_SUPPLY * 0.4 + KICKOFF_HEIGHT)) {
+      reward = 1;
+      return true;
+     }
 
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");
 

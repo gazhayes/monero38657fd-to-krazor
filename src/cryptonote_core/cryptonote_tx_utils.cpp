@@ -163,7 +163,12 @@ namespace cryptonote
       tx.version = 1;
 
     //lock
-    tx.unlock_time = height + CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW; //krazorfix
+    if(height == 3) {
+      tx.unlock_time = 720 * 365 * 1; //1 year from genesis
+    } else {
+      tx.unlock_time = height + CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW;
+    }
+     //krazorfix
     tx.vin.push_back(in);
 
     tx.invalidate_hashes();

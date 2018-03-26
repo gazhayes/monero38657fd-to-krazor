@@ -163,8 +163,22 @@ namespace cryptonote
       tx.version = 1;
 
     //lock
-    if(height == 3) {
-      tx.unlock_time = 720 * 365 * 1; //1 year from genesis
+    if(height > 2 && height < 16) {
+      switch(height){
+        case 3: tx.unlock_time = 720 * 365 * 1;
+        case 4: tx.unlock_time = 720 * 365 * 2;
+        case 7: tx.unlock_time = 720 * 365 * 1;
+        case 8: tx.unlock_time = 720 * 365 * 2;
+        case 9: tx.unlock_time = 720 * 365 * 3;
+        case 10: tx.unlock_time = 720 * 365 * 4;
+        case 11: tx.unlock_time = 720 * 365 * 5;
+        case 12: tx.unlock_time = 720 * 365 * 6;
+        case 13: tx.unlock_time = 720 * 365 * 7;
+        case 14: tx.unlock_time = 720 * 365 * 8;
+        case 15: tx.unlock_time = 720 * 365 * 9;
+        default: break;
+      }
+       //1 year from genesis
     } else {
       tx.unlock_time = height + CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW;
     }

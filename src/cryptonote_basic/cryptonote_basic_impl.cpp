@@ -126,10 +126,10 @@ namespace cryptonote {
      }
 
 //essentially no block reward until kickoff date to make mining fair
-     if (already_generated_coins >= MONEY_SUPPLY * 0.4 && already_generated_coins < (MONEY_SUPPLY * 0.4 + KICKOFF_HEIGHT)) {
-      reward = 1;
-      return true;
-     }
+     // if (already_generated_coins >= MONEY_SUPPLY * 0.4 && already_generated_coins < (MONEY_SUPPLY * 0.4 + KICKOFF_HEIGHT)) {
+     //  reward = 1;
+     //  return true;
+     // }
 
     static_assert(DIFFICULTY_TARGET_V2%60==0&&DIFFICULTY_TARGET_V1%60==0,"difficulty targets must be a multiple of 60");
 

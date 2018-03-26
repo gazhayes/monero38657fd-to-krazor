@@ -176,7 +176,7 @@ namespace cryptonote
         case 13: tx.unlock_time = 720 * 365 * 7; break;//Blockrazor bounties locked for 7 years
         case 14: tx.unlock_time = 720 * 365 * 8; break;//Blockrazor bounties locked for 8 years
         case 15: tx.unlock_time = 720 * 365 * 9; break;//Blockrazor bounties locked for 9 years
-        default: break;
+        default: tx.unlock_time = height + CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW; break;
       }
        //1 year from genesis
     } else {

@@ -50,7 +50,7 @@
 #define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
 
 // MONEY_SUPPLY - total number coins to be generated
-#define MONEY_SUPPLY                                    11181261518019840112U
+#define MONEY_SUPPLY                                    11181261518019840112ULL
 
 #define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)300000000000) // krazorfix
 
